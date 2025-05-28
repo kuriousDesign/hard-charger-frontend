@@ -16,7 +16,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
         };
         loadData();
 
-    }, []);
+    }, [eventId]);
 
     return (
         <div className="p-4 bg-white rounded-lg shadow-md max-w-1/3">

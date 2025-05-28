@@ -11,6 +11,30 @@ export const RacersCard = ({ raceId }: { raceId: string })  => {
     const [loading, setLoading] = useState(true);
     const [racersTitle, setRacersTitle] = useState( 'Starting Lineup');
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Replace with your actual API endpoint
+                const result = await fetchRace(raceId as string) as Race;
+                console.log("status:", result.status);
+                if(result.status === 'finished' || result.status === 'in_progress') {
+                    result.racers.sort((a, b) => a.current_position - b.current_position);
+                    setRacersTitle('Current Standings');
+                    if(result.status === 'finished') {
+                        setRacersTitle('Final Results');
+                    }
+                }
+                else {
+                    result.racers.sort((a, b) => a.starting_position - b.starting_position);
+                }
+
+                setData(result);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching event:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
         if (raceId) {
             fetchData();
         }
@@ -18,30 +42,7 @@ export const RacersCard = ({ raceId }: { raceId: string })  => {
 
 
 
-    const fetchData = async () => {
-        try {
-            // Replace with your actual API endpoint
-            const result = await fetchRace(raceId as string) as Race;
-            console.log("status:", result.status);
-            if(result.status === 'finished' || result.status === 'in_progress') {
-                result.racers.sort((a, b) => a.current_position - b.current_position);
-                setRacersTitle('Current Standings');
-                if(result.status === 'finished') {
-                    setRacersTitle('Final Results');
-                }
-            }
-            else {
-                result.racers.sort((a, b) => a.starting_position - b.starting_position);
-            }
 
-            setData(result);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching event:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     if (loading) return <div>Loading...</div>;
     if (!data) return <div>Race not found</div>;
