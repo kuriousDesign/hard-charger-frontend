@@ -36,9 +36,10 @@ export default function EventPage() {
     return (
         <div className='flex flex-col gap-4 p-6'>
             <div className='bg-white shadow-md rounded-lg p-6 max-w-1/3'>
+                <h1 className='text-xl font-bold text-gray-300'>Event</h1>
                 <h1 className='text-3xl font-bold'>{data?.name}</h1>
-                <h2>{data?.location}</h2>
-                <p className='text-gray-600'>{new Date(data?.date ?? new Date()).toLocaleDateString()}</p>
+                <h2 className='text-gray-500'>{data?.location}</h2>
+                <p className='text-gray-500'>{new Date(data?.date ?? new Date()).toLocaleDateString()}</p>
                 {/* Add your event editing form here */}
             </div>
             <RacesCard eventId={event_id as string} />

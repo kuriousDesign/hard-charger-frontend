@@ -21,7 +21,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
     return (
         <div className="p-4 bg-white rounded-lg shadow-md max-w-1/3">
             <h2 className="text-xl font-bold mb-4">Races</h2>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 pb-4">
                 {data.map((race) => (
                     <button 
                         key={race._id} 
@@ -34,6 +34,12 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
                     </button>
                 ))}
             </div>
+            <button 
+                onClick={() => router.push(`/create_race/${eventId}`)} 
+                className="bg-blue-600 text-white p-4 rounded-full"
+            >
+                Create Race
+            </button> 
         </div>
     );
 };
