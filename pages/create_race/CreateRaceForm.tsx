@@ -8,7 +8,7 @@ interface CreateRaceFormProps {
 }
 
 export default function CreateRaceForm({ onSubmit }: CreateRaceFormProps) {
-  const [form, setForm] = useState<Race>({} as Race);
+  const [form, setForm] = useState<Race>({status:'lineup'} as Race);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,6 +20,15 @@ export default function CreateRaceForm({ onSubmit }: CreateRaceFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Convert numeric fields to numbers
+    setForm((prev) => ({
+      ...prev,
+      laps: Number(prev.laps),
+      num_cars: Number(prev.num_cars),
+      intermission_lap: Number(prev.intermission_lap),
+      num_transfers: Number(prev.num_transfers),
+      first_transfer_position: Number(prev.first_transfer_position),
+    }));
     onSubmit(form);
     console.log('Race form submitted:', form);
   };
@@ -63,6 +72,61 @@ export default function CreateRaceForm({ onSubmit }: CreateRaceFormProps) {
         className="border p-2 rounded"
         required
       />
+
+      {/* <input
+        type="text"
+        name="event_id"
+        value={form.event_id}
+        onChange={handleChange}
+        placeholder="Event ID"
+        className="border p-2 rounded"
+        required
+      /> */}
+      {/* <input
+        type="text"
+        name="_id"
+        value={form._id}
+        onChange={handleChange}
+        placeholder="id (optional)"
+        className="border p-2 rounded"
+        required
+      /> */}
+      <input
+        type="number"
+        name="intermission_lap"
+        value={form.intermission_lap}
+        onChange={handleChange}
+        placeholder="Intermission Lap (put 0 if there isn't one)"
+        className="border p-2 rounded"
+        required
+      />
+      <input
+        type="number"
+        name="num_transfers"
+        value={form.num_transfers}
+        onChange={handleChange}
+        placeholder="Number of Transfers"
+        className="border p-2 rounded"
+        required
+      />
+      <input
+        type="number"
+        name="first_transfer_position"
+        value={form.first_transfer_position}
+        onChange={handleChange}
+        placeholder="First Transfer Position"
+        className="border p-2 rounded"
+        required
+      />
+      {/* <input
+        type="text"
+        name="status"
+        value={form.status}
+        onChange={handleChange}
+        placeholder="Status (e.g., lineup, in_progress, finished)"
+        className="border p-2 rounded"
+        required
+      />       */}
 
 
       <button
