@@ -7,7 +7,7 @@ interface CreateEventFormProps {
   onSubmit: (event: RaceEvent) => void;
 }
 
-export function CreateEventForm({ onSubmit }: CreateEventFormProps) {
+export default function CreateEventForm({ onSubmit }: CreateEventFormProps) {
   const [form, setForm] = useState<RaceEvent>({_id:''} as RaceEvent);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

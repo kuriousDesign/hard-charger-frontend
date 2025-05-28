@@ -7,7 +7,7 @@ interface CreateGameFormProps {
   onSubmit: (game: Game) => void;
 }
 
-export function CreateGameForm({ onSubmit }: CreateGameFormProps) {
+export default function CreateGameForm({ onSubmit }: CreateGameFormProps) {
   const [form, setForm] = useState<Game>({
     _id: '',
     name: '',

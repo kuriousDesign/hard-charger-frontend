@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { RaceEvent } from '@/actions/models';
-import { CreateEventForm } from './CreateEventForm';
+import CreateEventForm from './CreateEventForm';
 import { postRaceEvent } from '@/actions/actions';
 
 export default function CreateEventPage() {

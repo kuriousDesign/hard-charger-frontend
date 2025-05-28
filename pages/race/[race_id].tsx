@@ -13,30 +13,32 @@ export default function RacePage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Replace with your actual API endpoint
+                const result = await fetchRace(race_id as string) as Race;
+                if(result.status === 'finished' || result.status === 'in_progress') {
+                    result.racers.sort((a, b) => a.current_position - b.current_position);
+                }
+                else {
+                    result.racers.sort((a, b) => a.starting_position - b.starting_position);
+                }
+
+                setData(result);
+            } catch (error) {
+                console.error('Error fetching event:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        
         if (race_id) {
             fetchData();
         }
     }, [race_id]);
 
 
-    const fetchData = async () => {
-        try {
-            // Replace with your actual API endpoint
-            const result = await fetchRace(race_id as string) as Race;
-            if(result.status === 'finished' || result.status === 'in_progress') {
-                result.racers.sort((a, b) => a.current_position - b.current_position);
-            }
-            else {
-                result.racers.sort((a, b) => a.starting_position - b.starting_position);
-            }
 
-            setData(result);
-        } catch (error) {
-            console.error('Error fetching event:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     if (loading) return <div>Loading...</div>;
     if (!data) return <div>Event not found</div>;

@@ -3,22 +3,17 @@ import type { RaceEvent } from '@/actions/models';
 import { useEffect, useState } from 'react';
 import { GamesCard } from "@/components/GamesCard";
 import { RacesCard } from '@/components/RacesCard';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 
 export default function EventPage() {
-
+    const router = useRouter();
     const { event_id } = router.query;
     console.log("Event ID:", event_id);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<RaceEvent | null>(null);
 
     useEffect(() => {
-        if (event_id) {
-            fetchData();
-        }
-    }, [event_id]);
-
-    const fetchData = async () => {
+        const fetchData = async () => {
         try {
             // Replace with your actual API endpoint
             const result = await fetchEvent(event_id as string);
@@ -29,6 +24,10 @@ export default function EventPage() {
             setLoading(false);
         }
     };
+        if (event_id) {
+            fetchData();
+        }
+    }, [event_id]);
 
 
     if (loading) return <div>Loading...</div>;
