@@ -1,11 +1,9 @@
 import { fetchRace } from '@/actions/actions';
-import { Race, Racer } from '@/actions/models';
+import { Race } from '@/actions/models';
 import { RacersCard } from '@/components/RacersCard';
 //import router from 'next/router';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { RawCreateParams } from 'zod';
-
 
 export default function RacePage() {
     const router = useRouter();

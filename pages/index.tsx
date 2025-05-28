@@ -1,7 +1,7 @@
 "use client";
 
 import { fetchDrivers, fetchRacesByEvent} from "@/actions/actions";
-import { Driver, Game, Race } from "@/actions/models";
+import { Driver, Race } from "@/actions/models";
 
 import { EventsCard } from "@/components/EventsCard";
 import { Geist, Geist_Mono } from "next/font/google";
