@@ -18,7 +18,7 @@ export const GamesCard = ({ eventId }: { eventId: string }) => {
     }, [eventId]);
 
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md">
+        <div className="p-4 bg-white rounded-lg shadow-md w-1/3">
             <h2 className="text-xl font-bold mb-4">Active Games</h2>
             <ul className="space-y-2">
                 {games.map((game) => (

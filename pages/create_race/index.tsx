@@ -6,8 +6,8 @@ import { CreateGameForm } from './components/CreateGameForm';
 import { postGame } from '@/actions/actions';
 import router from 'next/router';
 
-export default function CreateGamePage({eventId}: { eventId: string }) {
-  //const router = useRouter();
+export default function CreatRacePage({eventId}: { eventId: string }) {
+
 
   const handleCreate = async (game: Game) => {
     // modify game prop event_id to match the eventId prop

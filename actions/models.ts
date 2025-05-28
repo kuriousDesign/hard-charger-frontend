@@ -1,5 +1,12 @@
 // Basic example of data interfaces - modify these based on your actual API response
 
+export interface RaceEvent {
+    _id: string;
+    name: string;
+    date: string;
+    location: string;
+}
+
 //collection
 export interface Game {
     _id: string;
@@ -48,20 +55,23 @@ export interface Driver {
     car_number: string;
 }
 
-export interface RaceResult{
-    main_letter: string;
-    starting_position: number;
-    current_position: number;
-}
+// export interface RaceResult{
+//     main_letter: string;
+//     starting_position: number;
+//     current_position: number;
+// }
 
 export interface Racer {
-    _id: string;
-    RaceResults: RaceResult[];
+    car_number: string;
+    driver_fullname: string;
+    starting_position: number;
+    current_position: number;
 }
 
 export interface Race {
     _id: string;
     event_id: string;
+    status: string; // "lineup", "lineup_with_transfers", "in_progress", "finished"
     type: string;
     letter: string;
     num_cars: number;
@@ -70,11 +80,4 @@ export interface Race {
     first_transfer_position: number;
     intermission_lap: number;
     racers: Racer[];
-}
-
-export interface RaceEvent {
-    _id: string;
-    name: string;
-    date: string;
-    location: string;
 }
