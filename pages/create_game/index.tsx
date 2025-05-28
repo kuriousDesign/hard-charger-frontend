@@ -2,7 +2,7 @@
 
 //import { useRouter } from 'next/navigation';
 import { Game } from '@/actions/models';
-import { CreateGameForm } from './components/CreateGameForm';
+import { CreateGameForm } from './CreateGameForm';
 import { postGame } from '@/actions/actions';
 import router from 'next/router';
 
