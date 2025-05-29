@@ -5,7 +5,7 @@ const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://hard-c
 
 export async function fetchEvent(eventId: string) {
     //this will fetch data to use in the game selection form
-    console.log("Fetching race event from backend API:", backendApiUrl);
+    //console.log("Fetching race event from backend API:", backendApiUrl);
     try {
         const response = await fetch(`${backendApiUrl}/events/${eventId}`, {
             method: "GET",
@@ -26,7 +26,7 @@ export async function fetchEvent(eventId: string) {
 
 export async function fetchEvents() {
     //this will fetch data to use in the game selection form
-    console.log("Fetching race events from backend API:", backendApiUrl);
+    //console.log("Fetching race events from backend API:", backendApiUrl);
     try {
         const response = await fetch(`${backendApiUrl}/events`, {
             method: "GET",
@@ -47,7 +47,7 @@ export async function fetchEvents() {
 }
 
 export async function postRaceEvent(event: RaceEvent) {
-    console.log("Posting New Event to backend API:", backendApiUrl);
+    //console.log("Posting New Event to backend API:", backendApiUrl);
     try {
         const response = await fetch(`${backendApiUrl}/create_event`, {
             method: "POST",
@@ -77,7 +77,7 @@ export async function postRaceEvent(event: RaceEvent) {
 
 export async function fetchGames() {
     //this will fetch data to use in the game selection form
-    console.log("Fetching games from backend API:", backendApiUrl);
+    //console.log("Fetching games from backend API:", backendApiUrl);
     try {
         const response = await fetch(`${backendApiUrl}/games`, {
             method: "GET",
@@ -98,8 +98,8 @@ export async function fetchGames() {
 }
 
 export async function fetchGamesByEvent(eventId: string) {
-    console.log("Fetching games for event from backend API:", backendApiUrl);
-    console.log("Event ID:", eventId);
+    //console.log("Fetching games for event from backend API:", backendApiUrl);
+    //console.log("Event ID:", eventId);
     try {
         const response = await fetch(`${backendApiUrl}/games/event/${eventId}`, {
             method: "GET",
@@ -268,7 +268,7 @@ export async function fetchEntriesByGame(game_id: string) {
 
 // i want to fetch data from the backend api /entries which returns a list of entries
 export async function fetchDrivers() {
-    console.log("Fetching drivers from backend API:", backendApiUrl);
+    //console.log("Fetching drivers from backend API:", backendApiUrl);
     try {
         const response = await fetch(`${backendApiUrl}/drivers`, {
         method: "GET",
@@ -391,6 +391,7 @@ export async function fetchRacersByRaceId(race_id: string) {
 
 export async function fetchRacersWithDriversByRaceId(race_id: string) {
     try {
+        //console.log("Fetching racers with drivers by raceId", race_id);
         const response = await fetch(`${backendApiUrl}/racers-with-drivers/${race_id}`, {
         method: "GET",
         headers: {

@@ -1,5 +1,6 @@
 import { EventsCard } from "@/components/EventsCard";
 import { Geist, Geist_Mono } from "next/font/google";
+import router from "next/router";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,12 @@ export default function Home() {
     >
       <main className="flex flex-col gap-4 w-full h-full p-4">
         <EventsCard />
+        <button
+            onClick={() => router.push(`/drivers`)}
+            className="mt-4 bg-gray-50 text-gray-700 p-4 rounded-full w-fit min-w-[150px] hover:bg-black hover:text-white transition-colors duration-300 shadow-md"
+        >
+          View Drivers
+        </button>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
 

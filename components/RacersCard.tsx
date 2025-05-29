@@ -17,13 +17,12 @@ export const RacersCard = ({ eventId, raceId }: { eventId: string, raceId: strin
             try {
                 // Replace with your actual API endpoint
                 const raceResult = await fetchRace(raceId as string) as Race;
-                
                 const result = await fetchRacersWithDriversByRaceId(raceId as string);
-                console.log(result.drivers);
+                //console.log(result.drivers);
                 
                 setDrivers(result.drivers);
                 setRace(raceResult);
-                console.log("status:", raceResult.status);
+                //console.log("status:", raceResult.status);
                 if(result.racers.length === 0) {
                     setRacersTitle('No Racers');
                 }
@@ -111,7 +110,7 @@ export const RacersCard = ({ eventId, raceId }: { eventId: string, raceId: strin
             {RacersDiv()}
             <button 
                 onClick={() => router.push(`${window.location.pathname}/create_racer`)} 
-                className="bg-blue-600 text-white p-4 rounded-full"
+                className="bg-blue-600 text-white p-4 rounded-full w-fit min-w-[150px] hover:bg-blue-700 transition-colors duration-300 shadow-md"
             >
                 Add Racer
             </button> 

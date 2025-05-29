@@ -5,7 +5,7 @@ import { Racer } from '@/actions/models';
 import CreateRacerForm from './CreateRacerForm';
 import { postRacer } from '@/actions/actions';
 
-export default function CreateEventPage() {
+export default function CreateRacerPage() {
   const router = useRouter();
 
   const handleCreate = async (racer: Racer) => {

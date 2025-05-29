@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 export default function EventPage() {
     const router = useRouter();
     const { event_id } = router.query;
-    console.log("Event ID:", event_id);
+    //console.log("Event ID:", event_id);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<RaceEvent | null>(null);
 
@@ -49,6 +49,12 @@ export default function EventPage() {
             {EventDiv()}
             <RacesCard eventId={event_id as string} />
             <GamesCard eventId={event_id as string} />
+            <button
+                onClick={() => router.push(`/`)}
+                className="mt-4 bg-gray-50 text-gray-700 p-4 rounded-full w-fit min-w-[150px] hover:bg-black hover:text-white transition-colors duration-300 shadow-md"
+            >
+                Back Home
+            </button>
         </div>
     );
 }

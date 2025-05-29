@@ -17,7 +17,7 @@ export const EventsCard = () => {
         try {
             // Fetch events from the server
             const result = await fetchEvents();
-            console.log("Loaded data:", result);
+            //console.log("Loaded data:", result);
             setData(result);
         }
         catch (error) {

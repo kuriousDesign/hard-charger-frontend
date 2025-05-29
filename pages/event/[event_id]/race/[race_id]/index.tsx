@@ -37,15 +37,18 @@ export default function RacePage() {
     if (!data) return <div>Event not found</div>;
 
     return (
-        <div className='bg-white shadow-md rounded-lg p-6'>
-            <h1>{data?.letter} {data?.type}</h1>
-            <h2>Laps: {data?.laps}</h2>
-            <h2>Cars: {data?.num_cars}</h2>
-            <RacersCard raceId={race_id as string} eventId={event_id as string} />
+        <div className='flex flex-col gap-4 min-h-screen p-4'>
+            <div className='bg-white shadow-md rounded-lg p-4'>
+                <h1 className='text-xl font-bold text-gray-300'>Race</h1>
+                <h1 className='text-3xl font-bold'>{data?.letter} {data?.type}</h1>
+                <h2>Laps: {data?.laps}</h2>
+                <h2>Cars: {data?.num_cars}</h2>
+            </div>
+                <RacersCard raceId={race_id as string} eventId={event_id as string} />
 
             <button
                 onClick={() => router.push(`/event/${event_id}`)}
-                className="mt-4 bg-blue-600 text-white p-4 rounded-full"
+                className="mt-4 bg-gray-50 text-gray-700 p-4 rounded-full w-fit min-w-[150px] hover:bg-black hover:text-white transition-colors duration-300 shadow-md"
             >
                 Back to Event
             </button>

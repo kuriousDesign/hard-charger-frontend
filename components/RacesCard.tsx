@@ -11,7 +11,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
     useEffect(() => {
         const loadData = async () => {
             const result = await fetchRacesByEvent(eventId);
-            console.log("Loaded races:", result);
+            //console.log("Loaded races:", result);
             setData(result.toSorted((a, b) => a.letter.localeCompare(b.letter)));
         };
         loadData();
@@ -19,7 +19,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
     }, [eventId]);
 
     return (
-        <div className="p-4 bg-white rounded-lg shadow-md max-w-1/3">
+        <div className="p-4 bg-white rounded-lg shadow-md">
             <h2 className="text-xl font-bold mb-4">Races</h2>
             <div className="flex flex-wrap gap-4 pb-4">
                 {data.map((race) => (
@@ -36,7 +36,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
             </div>
             <button 
                 onClick={() => router.push(`/event/${eventId}/create_race`)} 
-                className="bg-blue-600 text-white p-4 rounded-full"
+                className="bg-blue-600 text-white p-4 rounded-full w-fit min-w-[150px] hover:bg-blue-800 transition-colors duration-300 shadow-md"
             >
                 Create Race
             </button> 
