@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 export default function RacePage() {
     const router = useRouter();
-    const { race_id } = router.query;
+    const { event_id, race_id } = router.query;
     //console.log("Race ID:", race_id);
     const [data, setData] = useState<Race | null>(null);
     const [loading, setLoading] = useState(true);
@@ -17,13 +17,6 @@ export default function RacePage() {
             try {
                 // Replace with your actual API endpoint
                 const result = await fetchRace(race_id as string) as Race;
-                if(result.status === 'finished' || result.status === 'in_progress') {
-                    result.racers.sort((a, b) => a.current_position - b.current_position);
-                }
-                else {
-                    result.racers.sort((a, b) => a.starting_position - b.starting_position);
-                }
-
                 setData(result);
             } catch (error) {
                 console.error('Error fetching event:', error);
@@ -48,10 +41,10 @@ export default function RacePage() {
             <h1>{data?.letter} {data?.type}</h1>
             <h2>Laps: {data?.laps}</h2>
             <h2>Cars: {data?.num_cars}</h2>
-            <RacersCard raceId={data?._id} />
+            <RacersCard raceId={race_id as string} eventId={event_id as string} />
 
             <button
-                onClick={() => router.push(`/event/${data?.event_id}`)}
+                onClick={() => router.push(`/event/${event_id}`)}
                 className="mt-4 bg-blue-600 text-white p-4 rounded-full"
             >
                 Back to Event

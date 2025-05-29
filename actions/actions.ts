@@ -1,6 +1,6 @@
 "use server"
 
-import { Game, Entry, Driver, Race, RaceEvent} from "@/actions/models" 
+import { Game, Entry, Driver, Race, RaceEvent, Racer} from "@/actions/models" 
 const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL || "https://hard-charger-backend.onrender.com/api";
 
 export async function fetchEvent(eventId: string) {
@@ -201,6 +201,27 @@ export async function postRace(race: Race) {
     }
 }
 
+export async function postRacer(racer: Racer) {
+    console.log("Posting New Racer to backend API:", backendApiUrl);
+    try {
+        const response = await fetch(`${backendApiUrl}/create_racer`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(racer),
+        });
+        if (!response.ok) {
+            throw new Error(`Error posting racer: ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log("Racer posted successfully:", data);
+    } catch (error) {
+        console.error("Failed to post racer:", error);
+        throw error;
+    }
+}
+
 export async function postDriver(driver: Driver) {
     console.log("Posting New Driver to backend API:", backendApiUrl);
     try {
@@ -345,6 +366,44 @@ export async function fetchRaces(event_id: string) {
         return data.data as Race[];
     } catch (error) {
         console.error("Failed to fetch races:", error);
+        throw error;
+    }
+}
+
+export async function fetchRacersByRaceId(race_id: string) {
+    try {
+        const response = await fetch(`${backendApiUrl}/racers/${race_id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        });
+        if (!response.ok) {
+            throw new Error(`Error fetching racers by race ID: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data.data as Racer[];
+    } catch (error) {
+        console.error("Failed to fetch racers by race ID:", error);
+        throw error;
+    }
+}
+
+export async function fetchRacersWithDriversByRaceId(race_id: string) {
+    try {
+        const response = await fetch(`${backendApiUrl}/racers-with-drivers/${race_id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        });
+        if (!response.ok) {
+            throw new Error(`Error fetching racers by race ID: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data as {racers: Racer[], drivers: Driver[]};
+    } catch (error) {
+        console.error("Failed to fetch racers by race ID:", error);
         throw error;
     }
 }

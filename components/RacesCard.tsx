@@ -26,7 +26,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
                     <button 
                         key={race._id} 
                         className="p-2 hover:bg-gray-50 rounded shadow-sm bg-gray-100 w-fit px-4"
-                        onClick={() => router.push(`/race/${race._id}`)}
+                        onClick={() => router.push(`/event/${eventId}/race/${race._id}`)}
                     >
                         <p className="font-bold">{race.letter} {race.type}</p>
                         <p className="font-medium">Laps: {race.laps}</p>
@@ -35,7 +35,7 @@ export const RacesCard = ({ eventId }: { eventId: string })  => {
                 ))}
             </div>
             <button 
-                onClick={() => router.push(`/create_race/${eventId}`)} 
+                onClick={() => router.push(`/event/${eventId}/create_race`)} 
                 className="bg-blue-600 text-white p-4 rounded-full"
             >
                 Create Race

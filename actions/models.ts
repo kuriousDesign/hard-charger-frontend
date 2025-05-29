@@ -62,8 +62,9 @@ export interface Driver {
 // }
 
 export interface Racer {
-    car_number: string;
-    driver_fullname: string;
+    _id: string
+    race_id: string;
+    driver_id: string;
     starting_position: number;
     current_position: number;
 }
@@ -79,5 +80,4 @@ export interface Race {
     num_transfers: number;
     first_transfer_position: number;
     intermission_lap: number;
-    racers: Racer[];
 }

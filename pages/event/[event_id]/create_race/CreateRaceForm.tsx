@@ -18,20 +18,22 @@ export default function CreateRaceForm({ onSubmit }: CreateRaceFormProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Convert numeric fields to numbers
-    setForm((prev) => ({
-      ...prev,
-      laps: Number(prev.laps),
-      num_cars: Number(prev.num_cars),
-      intermission_lap: Number(prev.intermission_lap),
-      num_transfers: Number(prev.num_transfers),
-      first_transfer_position: Number(prev.first_transfer_position),
-    }));
-    onSubmit(form);
-    console.log('Race form submitted:', form);
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const normalized: Race = {
+    ...form,
+    laps: Number(form.laps),
+    num_cars: Number(form.num_cars),
+    intermission_lap: Number(form.intermission_lap),
+    num_transfers: Number(form.num_transfers),
+    first_transfer_position: Number(form.first_transfer_position),
   };
+
+  onSubmit(normalized);
+  console.log('Race form submitted:', normalized);
+};
+
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
