@@ -4,9 +4,10 @@
 import { Race } from '@/actions/models';
 import CreateRaceForm from './CreateRaceForm';
 import { postRace } from '@/actions/actions';
-import router from 'next/router';
+import { useRouter } from 'next/router'
 
 export default function CreatRacePage() {
+  const router = useRouter();
   const { event_id } = router.query;
 
 
