@@ -1,6 +1,11 @@
+"use client";
+
+import { getDrivers } from "@/actions/actions";
 import { EventsCard } from "@/components/EventsCard";
+import runConnectionTest from "@/lib/test_connection";
 import { Geist, Geist_Mono } from "next/font/google";
 import router from "next/router";
+import { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +17,44 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export default function Home() {
+
+  async function submitDriver() {
+    console.log('Submitting driver...');
+    const res = await fetch('/api/drivers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        first_name: 'John',
+        last_name: 'Doe',
+        suffix: 'Jr.',
+        car_number: '42L',
+      }),
+    });
+
+    console.log('Response status:', res.body);
+
+    // const data = await res.json();
+
+    // if (res.ok) {
+    //   console.log('Driver saved:', data);
+    // } else {
+    //   console.error('Error:', data.error);
+    // }
+  }
+
+  //submitDriver();
+  //runConnectionTest().catch(console.error);
+  useEffect(() => {
+    const fetchDrivers = async () => {
+      const drivers = await getDrivers();
+      console.log('Drivers:', drivers);
+    };
+    
+    fetchDrivers().catch(console.error);
+  }, []);
+
 
   return (
     <div

@@ -408,3 +408,16 @@ export async function fetchRacersWithDriversByRaceId(race_id: string) {
         throw error;
     }
 }
+
+
+
+
+import { default as DriverSch } from '@/lib/models/driver'
+
+import dbConnect from '@/lib/db'
+
+
+export const getDrivers = async () => {
+    await dbConnect();
+	return DriverSch.find()
+}
